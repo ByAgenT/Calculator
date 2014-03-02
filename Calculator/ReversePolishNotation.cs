@@ -8,19 +8,19 @@ using Calculator.Stack;
 
 namespace Calculator
 {
-    static class ReversePolishNotation
+    internal static class ReversePolishNotation
     {
-        static private readonly string[] Operators = new string[] { "(", ")", "+", "*", "-", "/" };
+        private static readonly string[] Operators = new string[] { "(", ")", "+", "*", "-", "/" };
 
 
 
-        static public string DeleteSpaces(string input)
+        public static string DeleteSpaces(string input)
         {
             return input.Replace(" ", string.Empty);
         }
 
 
-        static public int GetPriority(string element)
+        public static int GetPriority(string element)
         {
             switch (element)
             {
@@ -102,34 +102,44 @@ namespace Calculator
                             if (GetPriority(i.ToString()) > GetPriority(stack.Top.Object))
                             {
                                 /*output.Add(i.ToString());
-                                output.Add(stack.Pop());*/                               
+                                output.Add(stack.Pop());*/
                                 stack.Push(i.ToString());
                             }
                             else
                             {
                                 stack.Push(i.ToString());
                             }
+
+
+                        }
+                        else
+                        {
+                            stack.Push(i.ToString());
                         }
 
                     }
-
                 }
-
-
                 if (counter == input.Length - 1)
                 {
                     while (stack.Top != null)
                     {
-                        if (stack.Top.Object == "(")
+                        if (stack.Top.Object == "(" || stack.Top.Object == ")")
                         {
                             stack.Pop();
                         }
-                        output.Add(stack.Pop());
+                        else
+                        {
+                            output.Add(stack.Pop());
+                        }
+
                     }
                 }
                 counter++;
+
             }
             return output.ToArray();
         }
+
+
     }
 }
