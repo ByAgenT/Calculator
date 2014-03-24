@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
-    class Calculator
+    public class Calculator
     {
-
+        public double Calculate(String expression)
+        {
+            return 0;
+        }
     }
 }
