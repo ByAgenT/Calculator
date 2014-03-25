@@ -20,7 +20,19 @@ namespace Calculator.Tests
             Calculator calculator = new Calculator();
             double result = calculator.Calculate(input);
 
-            Assert.AreEqual(result, expectedResult, "Wrong calculation");
+            Assert.AreEqual(result, expectedResult, "Calculation is not correct for {0}", input);
+        }
+
+        [TestCase("2 + 2 * 2", 0)]
+        [TestCase("(2 + 2) * 2", 0)]
+        [TestCase("2 + 2 / 2", 0)]
+        [TestCase("(2 + 2) / 2", 0)]
+        public void TestIncorrectCalculations(String input, double expectedResult)
+        {
+            Calculator calculator = new Calculator();
+            double result = calculator.Calculate(input);
+
+            Assert.AreNotEqual(result, expectedResult, "Calculation is not correct for {0}", input);
         }
     }
 }

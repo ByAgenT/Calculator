@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator.Stack
 {
-    class MyStackItem<T>
+    public class MyStackItem<T>
     {
         public MyStackItem(T obj)
         {

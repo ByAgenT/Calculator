@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator.Stack
 {
-    class MyStack<T>
+    public class MyStack<T>
     {
         public MyStackItem<T> Top
         {
