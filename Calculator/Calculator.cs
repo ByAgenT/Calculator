@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Calculator.Stack;
 
 namespace Calculator
@@ -34,7 +30,7 @@ namespace Calculator
                         case "-":
                             num1 = stack.Pop();
                             num2 = stack.Pop();
-                            stack.Push(num1 - num2);
+                            stack.Push(num2 - num1);
                             break;
                         case "*":
                             num1 = stack.Pop();

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Printing;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Calculator.Stack;
 
 namespace Calculator
@@ -43,7 +39,6 @@ namespace Calculator
             var output = new List<string>();
             var stack = new MyStack<string>();
             int startOfNum = 1;
-            int endOfNum = 1;
             bool isNumStarted = false;
             int counter = 0;
             int lnth = 0;
@@ -140,13 +135,5 @@ namespace Calculator
             }
             return output.ToArray();
         }
-
-        public static int SolveRPN(List<String> inputList)
-        {
-            
-            return 0;
-        }
-
-
     }
 }
