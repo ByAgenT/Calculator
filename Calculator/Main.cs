@@ -22,14 +22,15 @@ namespace Calculator
         {
             if ((sender as Button).Tag.ToString() == "=")
             {
-                string smth = EnterBox.Text;
-                string[] str = ReversePolishNotation.ConvertToReversePolishNotation(ReversePolishNotation.DeleteSpaces(smth));
+                string expression = EnterBox.Text;
+                /*string[] str = ReversePolishNotation.ConvertToReversePolishNotation(ReversePolishNotation.DeleteSpaces(smth));
                 string outStr = " ";
                 foreach (string s in str)
                 {
-                    outStr += s;
-                }
-                EnterBox.Text = outStr;
+                    outStr += s + " ";
+                }*/
+                Calculator calculator = new Calculator();
+                EnterBox.Text = calculator.Calculate(expression).ToString();
             }
             else
             {

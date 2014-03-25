@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -138,6 +139,12 @@ namespace Calculator
 
             }
             return output.ToArray();
+        }
+
+        public static int SolveRPN(List<String> inputList)
+        {
+            
+            return 0;
         }
 
 
