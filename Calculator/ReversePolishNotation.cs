@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using Calculator.Stack;
 
@@ -42,12 +44,29 @@ namespace Calculator
             bool isNumStarted = false;
             int counter = 0;
             int lnth = 0;
+            int opBrackets = 0;
+            int clBrackets = 0;
             foreach (var i in input)
             {
-
-
+                switch (i)
+                {
+                    case '(':
+                        opBrackets++; break;
+                    case ')':
+                        clBrackets++; break;
+                }
+            }
+            if (opBrackets != clBrackets)
+            {
+                throw new InvalidOperationException("Brackets error");
+            }
+            bool prevOperator = false;
+            foreach (var i in input)
+            {
+                
                 if (Char.IsDigit(i) && !isNumStarted)
                 {
+                    prevOperator = false;
                     isNumStarted = true;
                     startOfNum = counter;
                     lnth++;
@@ -75,15 +94,17 @@ namespace Calculator
                 }
                 if (Operators.Contains(i.ToString()))
                 {
+                    
                     if (i.ToString() == "(")
                     {
+                        prevOperator = false;
                         stack.Push(i.ToString());
 
                     }
 
                     if (i.ToString() == ")")
                     {
-
+                        prevOperator = false;
                         while (stack.Top.Object != "(")
                         {
                             output.Add(stack.Pop());
@@ -93,6 +114,10 @@ namespace Calculator
 
                     if (i.ToString() == "+" || i.ToString() == "/" || i.ToString() == "*" || i.ToString() == "-")
                     {
+                        if (prevOperator)
+                        {
+                            throw new InvalidOperationException("Error");
+                        }
                         if (stack.Top != null)
                         {
                             if (GetPriority(i.ToString()) > GetPriority(stack.Top.Object))
@@ -112,7 +137,7 @@ namespace Calculator
                         {
                             stack.Push(i.ToString());
                         }
-
+                        prevOperator = true;
                     }
                 }
                 if (counter == input.Length - 1)
